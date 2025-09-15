@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RePlate - MOCKUP with IDR Pricing</title>
+    <style>
+        /* 
+         * NOTE: This stylesheet uses temporary colors for layout visualization.
+         * Colors like aqua, salmon, gold, etc., are placeholders.
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background-color: rgba(0, 255, 255, 0.2); /* Temporary Color: Light Aqua */
+            border-bottom: 2px dashed #00ced1; /* Temporary Color: Dark Turquoise */
+        }
+
+        .logo img {
+            width: 150px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+
+        .contact-info .icon {
+            margin-right: 10px;
+            color: #8ac926;
+        }
+
+        .login-btn {
+            background-color: #FF4500; /* Temporary Color: OrangeRed */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: #333;
+            margin-bottom: 4px;
+            border-radius: 2px;
+        }
+
+        /* Image Placeholder Style */
+        .image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            border: 2px dashed #ccc;
+            color: #888;
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+            flex-wrap: wrap;
+            background-color: rgba(218, 112, 214, 0.1); /* Temporary Color: Light Orchid */
+        }
+
+        .hero-image {
+            flex: 1;
+            padding-right: 50px;
+            position: relative;
+        }
+        
+        .hero-image .main-image {
+            width: 100%;
+            height: 350px;
+            max-width: 500px;
+            border-radius: 15px;
+            border: 3px solid #DA70D6; /* Temporary Color: Orchid */
+        }
+        
+        .side-dishes {
+            position: absolute;
+            bottom: 20px;
+            left: -50px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .side-dishes .side-image {
+             width: 80px;
+             height: 80px;
+             border-radius: 50%;
+             object-fit: cover;
+             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+             border: 2px solid #DA70D6; /* Temporary Color: Orchid */
+        }
+
+
+        .hero-content {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background-color: #32CD32; /* Temporary Color: LimeGreen */
+            color: white;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .price-tag .price-text { font-size: 14px; font-weight: 500; margin: 0; }
+        .price-tag .price { font-size: 28px; font-weight: 700; margin: 0; } /* Adjusted font size */
+        .price-tag .old-price { text-decoration: line-through; font-size: 14px; margin: 0; }
+
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 80px; margin: 0; color: #4a4a4a; line-height: 1; }
+        .hero-content .sub-heading { font-family: 'Playfair Display', serif; font-size: 40px; color: #4a4a4a; margin: 0 0 10px; }
+
+
+        .rating { display: flex; align-items: center; margin: 20px 0; }
+        .rating .stars { color: #ffc107; }
+        .rating .rating-value { font-weight: 600; margin: 0 10px; }
+        .rating .reviews { color: #888; text-decoration: underline; }
+
+        .hero-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            background: rgba(255, 215, 0, 0.5); /* Temporary Color: Gold */
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px dashed #b8860b; /* Temporary Color: DarkGoldenRod */
+        }
+
+        .hero-buttons { margin-top: 30px; }
+
+        .btn {
+            padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer;
+            font-weight: 600; font-size: 16px; margin-right: 15px; transition: background-color 0.3s ease;
+        }
+
+        .btn-primary { background-color: #FF6347; color: white; /* Temporary Color: Tomato */ }
+        .btn-primary:hover { background-color: #e5533d; }
+
+        .btn-secondary { background-color: transparent; color: #FF6347; border: 2px solid #FF6347; /* Temporary Color: Tomato */ }
+        .btn-secondary:hover { background-color: #FF6347; color: white; /* Temporary Color: Tomato */ }
+
+
+        /* Menu Section */
+        .menu-section {
+            padding: 80px 0; position: relative;
+            background-color: rgba(60, 179, 113, 0.1); /* Temporary Color: Light SeaGreen */
+        }
+        
+        .menu-cards { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        
+        .card {
+            background-color: white; border-radius: 20px; padding: 20px; text-align: center;
+            width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative;
+            overflow: hidden; border: 3px solid black;
+        }
+
+        .card-green { background-color: #98FB98; border-color: #2E8B57; /* Temporary Colors: PaleGreen, SeaGreen */ }
+        .card-orange { background-color: #FFA07A; border-color: #E9967A; /* Temporary Colors: LightSalmon, DarkSalmon */ }
+        
+        .card-image .menu-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+        }
+        
+        .card-price {
+            position: absolute; top: 30px; right: 30px; background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%; width: 80px; height: 80px; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; color: #333;
+        }
+
+        .card-price .price { font-size: 20px; font-weight: 700; } /* Adjusted font size */
+        .card-price .old-price { text-decoration: line-through; font-size: 14px; }
+
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 32px; margin: 15px 0 10px; color: #333; }
+        .card .rating { justify-content: center; }
+        .card p { font-size: 14px; line-height: 1.5; min-height: 63px; color: #333; }
+        
+        .card .btn-order {
+            background-color: #4682B4; /* Temporary Color: SteelBlue */ color: white; border: none;
+            padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: 600;
+            margin-top: 15px; transition: background-color 0.3s;
+        }
+        
+        .card .btn-order:hover { background-color: #4176a3; }
+        
+        .arrow {
+            position: absolute; top: 50%; transform: translateY(-50%); background-color: white;
+            border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center;
+            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); cursor: pointer;
+        }
+        
+        .arrow-left { left: -20px; }
+        .arrow-right { right: -20px; }
+
+
+        /* Footer */
+        footer {
+            padding: 40px 0; text-align: center;
+            background-color: rgba(128, 128, 128, 0.2); /* Temporary Color: Gray */
+            border-top: 2px dashed #808080; /* Temporary Color: Gray */
+        }
+
+        .footer-logo img { width: 80px; margin-bottom: 20px; }
+        .footer-nav { margin: 20px 0; }
+        .footer-nav a { color: #666; text-decoration: none; margin: 0 15px; font-weight: 500; }
+        .copyright { color: #aaa; font-size: 14px; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column; text-align: center; }
+            .hero-image { padding-right: 0; margin-bottom: 40px; }
+            .hero-content { max-width: 100%; }
+            .price-tag { top: -20px; right: 20px; width: 100px; height: 100px; }
+             .price-tag .price { font-size: 24px; }
+             .hero-content h1 { font-size: 60px; }
+             .side-dishes { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .header-right .contact-info, .header-right .login-btn { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-content h1 { font-size: 50px; }
+            .hero-content .sub-heading { font-size: 30px; }
+            .arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <div class="logo">
+            <img src="Logo.png" alt="RePlate Logo">
+        </div>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="icon">&#9742;</span> CALL: +91 90007 80007
+            </div>
+            <button class="login-btn">LOGIN</button>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-image">
+                <div class="image-placeholder main-image" role="img" aria-label="Image of Mutton Biryani">Image of Mutton Biryani</div>
+                <div class="side-dishes">
+                   <div class="image-placeholder side-image" role="img" aria-label="Image of Raita">Raita</div>
+                   <div class="image-placeholder side-image" role="img" aria-label="Image of Gravy">Gravy</div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="price-tag">
+                    <p class="price-text">HARGA</p>
+                    <p class="price">Rp 72.000</p>
+                    <p class="old-price">Rp 82.000</p>
+                </div>
+                <h2 class="sub-heading">Mutton</h2>
+                <h1>Biryani</h1>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="rating-value">4.5</span>
+                    <span class="reviews">521 Reviews</span>
+                </div>
+                <p>Aromatic, soft, and tender chunks of lamb layered with rice infused with the flavors of spices. The delicate blend of cardamom, cloves, and cinnamon creates a symphony of tastes in every bite.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">ORDER NOW</button>
+                    <button class="btn btn-secondary">EXPLORE MORE</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <div class="container">
+                <div class="menu-cards">
+                    <div class="arrow arrow-left">&lt;</div>
+                    <div class="card card-green">
+                        <div class="card-image">
+                            <div class="image-placeholder menu-image" role="img" aria-label="Image of Jeera Chawal">Image of Jeera Chawal</div>
+                        </div>
+                        <div class="card-price">
+                             <span class="price">Rp 36.000</span>
+                             <span class="old-price">Rp 40.000</span>
+                        </div>
+                        <h3>Jeera Chawal</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-value">4.5</span>
+                        </div>
+                        <p>Aromatic, soft, and tender chunks of lamb layered with rice infused with the flavors of spices...</p>
+                        <button class="btn-order">ORDER NOW</button>
+                    </div>
+
+                    <div class="card card-orange">
+                        <div class="card-image">
+                            <div class="image-placeholder menu-image" role="img" aria-label="Image of Kadai Chicken">Image of Kadai Chicken</div>
+                        </div>
+                         <div class="card-price">
+                             <span class="price">Rp 44.000</span>
+                             <span class="old-price">Rp 52.000</span>
+                        </div>
+                        <h3>Kadai Chicken</h3>
+                         <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-value">4.5</span>
+                        </div>
+                        <p>Aromatic, soft, and tender chunks of lamb layered with rice infused with the flavors of spices...</p>
+                        <button class="btn-order">ORDER NOW</button>
+                    </div>
+
+                    <div class="card card-green">
+                        <div class="card-image">
+                           <div class="image-placeholder menu-image" role="img" aria-label="Image of Palak Paneer">Image of Palak Paneer</div>
+                        </div>
+                         <div class="card-price">
+                             <span class="price">Rp 40.000</span>
+                             <span class="old-price">Rp 44.000</span>
+                        </div>
+                        <h3>Palak Paneer</h3>
+                         <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-value">4.5</span>
+                        </div>
+                        <p>Aromatic, soft, and tender chunks of lamb layered with rice infused with the flavors of spices...</p>
+                        <button class="btn-order">ORDER NOW</button>
+                    </div>
+                    <div class="arrow arrow-right">&gt;</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+             <div class="footer-logo">
+                 <img src="Logo.png" alt="RePlate Logo Small">
+             </div>
+             <nav class="footer-nav">
+                 <a href="#">Home</a>
+                 <a href="#">About Us</a>
+                 <a href="#">Menu</a>
+                 <a href="#">Blog</a>
+                 <a href="#">Contact</a>
+                 <a href="#">Return Policy</a>
+             </nav>
+             <p class="copyright">Copyright © 2010-2024 Kamigit Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
